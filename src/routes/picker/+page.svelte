@@ -6,7 +6,6 @@
   import { json } from '@sveltejs/kit';
   import { onMount } from 'svelte';
   import PlayerBubble from '../../components/graphics/PlayerBubble.svelte';
-  import PlayerBubblePointer from '../../components/graphics/PlayerBubblePointer.svelte';
 
   let logMsg = "loaded \n";
   let allCapturedPoints = [];
