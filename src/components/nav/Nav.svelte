@@ -1,5 +1,5 @@
-<script>
-  export let hide;
+<script lang="ts">
+  export let hide: null;
 </script>
 
 <ul on:keydown={hide} on:click={hide}>

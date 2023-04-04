@@ -5,4 +5,4 @@
 <h1>Welcome to bgtools</h1>
 
 
-<Nav />
+<Nav hide={null}/>

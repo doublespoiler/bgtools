@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
   import { slide } from 'svelte/transition';
   import { quintOut, backOut } from 'svelte/easing';
   import { clickOutside } from '../../lib/click_outside'
@@ -8,6 +10,7 @@
 
   const hide = () => {
     show = false;
+    return null;
   }
 </script>
 
@@ -23,9 +26,6 @@
     overflow-y: auto;
     width: 10rem;
   }
-  li{
-			list-style: none;
-	}
 </style>
 
 {#if show}
