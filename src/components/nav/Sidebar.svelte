@@ -2,9 +2,13 @@
   import { slide } from 'svelte/transition';
   import { quintOut, backOut } from 'svelte/easing';
   import { clickOutside } from '../../lib/click_outside'
-
+  import Nav from './Nav.svelte';
 
   export let show = false;
+
+  const hide = () => {
+    show = false;
+  }
 </script>
 
 <style>
@@ -26,10 +30,6 @@
 
 {#if show}
 <nav use:clickOutside on:outclick={() => (show = false)} transition:slide={{delay: 150, duration: 300, easing: quintOut, axis: 'x'}}>
-  <ul on:keydown={() => (show = false)} on:click={() => (show = false)}>
-		<li><a href="/life">Life Counter</a></li>
-		<li><a href="/dice">Dice Roller</a></li>
-		<li><a href="/picker">Player Picker</a></li>
-	</ul>
+  <Nav {hide} />
 </nav>
 {/if}

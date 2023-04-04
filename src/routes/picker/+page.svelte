@@ -8,7 +8,6 @@
   import PlayerBubble from '../../components/graphics/PlayerBubble.svelte';
 
   let logMsg = "loaded \n";
-  let allCapturedPoints = [];
   let allTouches = [{
     identifier: -1,
     pageX: 0,
@@ -18,9 +17,6 @@
     screenX: 0,
     screenY: 0
   }];
-  let capturedPointerId = null;
-  let x = 0;
-  let y = 0;
   let timer = 0;
   let timerGoing = false;
   let interval = null;
@@ -152,60 +148,6 @@
     }
     return -1; //not found
   }
-
-
-
-  // function onPointerDown(e) {
-  //   console.log('pointer down')
-  //   startTimer();
-
-  //   element.setPointerCapture(e.pointerId);
-  //   allCapturedPoints = [...allCapturedPoints, e.pointerId]
-  //   console.log("all", allCapturedPoints)
-  //   capturedPointerId = e.pointerId;
-  //   console.log(e.pointerId);
-  //   const marker = document.createElement("div");
-  //   marker.setAttribute("id", `marker${e.pointerId}`);
-  //   marker.setAttribute("style", "width: 100px; height: 100px; color: black;")
-  //   marker.setAttribute("style:transform", "translate({x}px, {y}px)");
-  //   marker.setAttribute("on:pointerup", `${onPointerUp}`)
-  //   marker.setAttribute("on:onpointermove", `${onPointerMove}`)
-  //   document.body.append(marker);
-  // }
-
-  // function onPointerUp(e) {
-  //   capturedPointerId = null;
-  //   element.releasePointerCapture(e.pointerId);
-  //   allCapturedPoints = [...allCapturedPoints.splice(allCapturedPoints.findIndex(e.pointerId))];
-  //   console.log("up all", allCapturedPoints);
-  //   if(allCapturedPoints.length === 0){
-  //     clearInterval();
-  //   }
-  // }
-
-  // function onPointerMove(e) {
-  //   if (capturedPointerId != e.pointerId)
-  //     return;
-
-  //   e.preventDefault();
-  //   e.stopPropagation();
-
-  //   const marker = document.getElementById(`marker${e.pointerId}`);
-  //   marker.setAttribute("style:transform", `translate(${x}px, ${y}px)`);
-
-  //   x += e.movementX;
-  //   y += e.movementY;
-  // }
-  // function colorForTouch(touch) {
-  //   let r = touch.identifier % 16;
-  //   let g = Math.floor(touch.identifier / 3) % 16;
-  //   let b = Math.floor(touch.identifier / 7) % 16;
-  //   r = r.toString(16); // make it a hex digit
-  //   g = g.toString(16); // make it a hex digit
-  //   b = b.toString(16); // make it a hex digit
-  //   const color = `#${r}${g}${b}`;
-  //   return color;
-  // }
   
 </script>
 
@@ -217,6 +159,7 @@
     overflow-y: scroll;
     overflow-x: auto;
     touch-action: none;
+    z-index: 1;
   }
   #log{
     touch-action: none;
@@ -224,14 +167,7 @@
 </style>
 
 <h1>Player Picker</h1>
-<!-- <div bind:this={element}
-     on:pointerdown={onPointerDown}
-     on:pointerup={onPointerUp}
-     on:pointermove={onPointerMove}
-     style:transform="translate({x}px, {y}px)"
->
-  {capturedPointerId}
--->
+
 <div class="touch-area picker-area"
 
   on:touchstart={onTouchStart}
@@ -244,9 +180,6 @@
   {#each allTouches as touch}
     <svelte:component this={PlayerBubble} touch={touch} allTouches={allTouches} />
   {/each}
-  <!-- {#each storePB as touch}
-    <svelte:component this={PlayerBubble} touch={touch} />
-  {/each} -->
   <pre id="log">loaded</pre>
 </div>
 <!-- <div class="pointer-area picker-area"

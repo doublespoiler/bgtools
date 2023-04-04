@@ -48,6 +48,8 @@
     position: absolute;
     left: 0;
     top: 0;
+    touch-action: none;
+    pointer-events: none;
   }
 
   circle{

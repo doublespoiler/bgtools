@@ -30,6 +30,9 @@
 		display: flex;
 		justify-content: space-between;
 		height: 5%;
+		touch-action: none;
+		-ms-touch-action: none;
+		z-index: 99;
 	}
 
 	footer{
@@ -39,7 +42,7 @@
 </style>
 <div class="wrapper">
 	<header>
-		bgtools
+		<a href="/">bgtools</a>
 		<button class="menu-button" on:click={() => {sidebar_show = !sidebar_show}}>
 			<IconMenu2 />
 		</button>
